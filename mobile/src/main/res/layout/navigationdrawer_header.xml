@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="178dp"
+    android:background="@color/ColorPrimaryVeryDark"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:id="@+id/navigationdrawer_header">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="5dp"
+        android:paddingLeft="16dp">
+
+        <TextView
+            style="@style/NavigationDrawer.Header.Text.Heading"
+            android:id="@+id/navigationdrawer_name"
+            android:text="Max Mustermann"/>
+
+        <TextView
+            style="@style/NavigationDrawer.Header.Text"
+            android:id="@+id/navigationdrawer_hospital"
+            android:text="Hospital"/>
+
+        <TextView
+            style="@style/NavigationDrawer.Header.Text"
+            android:id="@+id/navigationdrawer_unit"
+            android:text="Unit"/>
+    </LinearLayout>
+</RelativeLayout>

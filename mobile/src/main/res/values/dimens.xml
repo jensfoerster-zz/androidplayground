@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- list parameters -->
+    <dimen name="list_padding_top">5dp</dimen>
+    <dimen name="list_padding_bottom">@dimen/list_padding_top</dimen>
+    <dimen name="list_padding_left">10dp</dimen>
+    <dimen name="list_padding_left_indented1">34dp</dimen>
+    <dimen name="list_padding_left_indented2">37dp</dimen>
+    <dimen name="list_padding_right">@dimen/list_padding_left</dimen>
+
+
+    <!-- navigation drawer -->
+    <dimen name="navdraw_padding_left">16dp</dimen>
+    <dimen name="navdraw_padding_general">5dp</dimen>
+
+    <dimen name="text_big">24sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_small">16sp</dimen>
+
+</resources>

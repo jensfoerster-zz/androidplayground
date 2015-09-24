@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ExpandableList.Item"
+    android:paddingLeft="@dimen/list_padding_left_indented1">
+
+    <TextView
+        android:id="@+id/expandablelist_entry"
+        style="@style/ExpandableList.Text.Item"
+        android:textStyle=""/>
+
+</LinearLayout>

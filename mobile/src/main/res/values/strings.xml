@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Playground</string>
+
+    <!-- Main -->
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="navigationdrawer_open">open</string>
+    <string name="navigationdrawer_closed">closed</string>
+    <!-- Main -->
+
+</resources>

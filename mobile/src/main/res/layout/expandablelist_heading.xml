@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ExpandableList.Item"
+    android:paddingLeft="0dp">
+
+    <ImageView
+        android:id="@+id/btn_expand_toggle"
+        android:layout_width="34dp"
+        android:layout_height="24dp"
+        android:layout_weight="0"
+        android:paddingLeft="@dimen/navdraw_padding_general"
+        android:paddingRight="@dimen/navdraw_padding_general"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_action_expand"/>
+
+    <TextView
+        style="@style/ExpandableList.Text.Heading"
+        android:id="@+id/expandablelist_heading"
+        android:text="My Patients"/>
+
+
+</LinearLayout>

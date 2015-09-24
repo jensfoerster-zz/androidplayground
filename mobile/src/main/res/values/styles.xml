@@ -1,0 +1,63 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="colorAccent">@color/ColorAccent</item>
+    </style>
+
+
+    <!-- Expandable List -->
+    <style name="ExpandableList"/>
+
+    <style name="ExpandableList.Item">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingTop">@dimen/list_padding_top</item>
+        <item name="android:paddingBottom">@dimen/list_padding_bottom</item>
+        <item name="android:paddingLeft">@dimen/list_padding_left</item>
+        <item name="android:paddingRight">@dimen/list_padding_right</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ExpandableList.Text">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ExpandableList.Text.Heading">
+        <item name="android:textColor">@color/ColorPrimary</item>
+        <item name="android:textSize">@dimen/text_big</item>
+    </style>
+    <style name="ExpandableList.Text.Misc">
+        <item name="android:textSize">@dimen/text_big</item>
+    </style>
+
+    <style name="ExpandableList.Text.Item">
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+    <!-- Expandable List -->
+
+    <!-- Navigation Drawer -->
+    <style name="NavigationDrawer"></style>
+
+    <style name="NavigationDrawer.Header"></style>
+
+    <style name="NavigationDrawer.Header.Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/ColorWhite</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginTop">@dimen/navdraw_padding_general</item>
+    </style>
+
+    <style name="NavigationDrawer.Header.Text.Heading">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
