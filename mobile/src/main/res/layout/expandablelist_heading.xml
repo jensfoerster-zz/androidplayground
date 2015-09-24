@@ -16,7 +16,7 @@
     <TextView
         style="@style/ExpandableList.Text.Heading"
         android:id="@+id/expandablelist_heading"
-        android:text="My Patients"/>
+        android:text="Heading"/>
 
 
 </LinearLayout>
