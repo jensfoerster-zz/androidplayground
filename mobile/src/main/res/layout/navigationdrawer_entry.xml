@@ -5,7 +5,7 @@
     android:paddingLeft="@dimen/list_padding_left_indented1">
 
     <TextView
-        android:id="@+id/expandablelist_entry"
+        android:id="@+id/navigationdrawer_entry"
         style="@style/ExpandableList.Text.Item"
         android:textStyle=""/>
 

@@ -22,12 +22,12 @@
 
         <TextView
             style="@style/NavigationDrawer.Header.Text"
-            android:id="@+id/navigationdrawer_hospital"
+            android:id="@+id/navigationdrawer_add_line1"
             android:text="Hospital"/>
 
         <TextView
             style="@style/NavigationDrawer.Header.Text"
-            android:id="@+id/navigationdrawer_unit"
+            android:id="@+id/navigationdrawer_add_line2"
             android:text="Unit"/>
     </LinearLayout>
 </RelativeLayout>

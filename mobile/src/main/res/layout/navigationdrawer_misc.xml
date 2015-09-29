@@ -6,5 +6,5 @@
 
     <TextView
         style="@style/ExpandableList.Text.Misc"
-        android:id="@+id/expandablelist_misc"/>
+        android:id="@+id/navigationdrawer_misc"/>
 </LinearLayout>

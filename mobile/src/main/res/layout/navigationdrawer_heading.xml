@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/ExpandableList.Item"
     android:paddingLeft="0dp">
 
@@ -15,7 +14,7 @@
 
     <TextView
         style="@style/ExpandableList.Text.Heading"
-        android:id="@+id/expandablelist_heading"
+        android:id="@+id/navigationdrawer_heading"
         android:text="Heading"/>
 
 

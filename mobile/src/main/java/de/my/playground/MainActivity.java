@@ -1,6 +1,7 @@
 package de.my.playground;
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.my.playground.NavigationDrawerRecyclerViewAdapter.ExpandableListItem;
 import de.my.playground.NavigationDrawerRecyclerViewAdapter.ExpandableListItemType;
 
 public class MainActivity extends AppCompatActivity  {
@@ -80,48 +80,26 @@ public class MainActivity extends AppCompatActivity  {
     private List<ExpandableListItem> generateFakeItems() {
         List<ExpandableListItem> data = new ArrayList<>();
 
-        data.add(new ExpandableListItem(ExpandableListItemType.HEADER, "Max Mustermann"));
+        data.add(new ExpandableListItem<>("Max Mustermann", ExpandableListItem.Type.HEADER));
 
-        ExpandableListItem header1 = new ExpandableListItem(ExpandableListItemType.HEADING, "Header 1");
-        header1.invisibleChildren = new ArrayList<>();
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Audi"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Aston Martin"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "BMW"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        header1.invisibleChildren.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Cadillac"));
-        data.add(header1);
+        ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADER);
+        fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
+        fruits.children.add(new ExpandableListItem<>("Orange", ExpandableListItem.Type.CHILD));
+        fruits.children.add(new ExpandableListItem<>("Banana", ExpandableListItem.Type.CHILD));
+        fruits.children.add(new ExpandableListItem<>("Grape", ExpandableListItem.Type.CHILD));
+        fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
+        data.add(fruits);
 
-        data.add(new ExpandableListItem(ExpandableListItemType.HEADING, "Header 2"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Audi"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Audi"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Aston Martin"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "BMW"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Cadillac"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Aston Martin"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "BMW"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Apple"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Orange"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Banana"));
-        data.add(new ExpandableListItem(ExpandableListItemType.CHILD, "Cadillac"));
-        data.add(new ExpandableListItem(ExpandableListItemType.MISC, "Settings"));
-        data.add(new ExpandableListItem(ExpandableListItemType.MISC, "About"));
+        ExpandableListItem cars = new ExpandableListItem<>("Cars", ExpandableListItem.Type.HEADER);
+        cars.children.add(new ExpandableListItem<>("Audi", ExpandableListItem.Type.CHILD));
+        cars.children.add(new ExpandableListItem<>("BMW", ExpandableListItem.Type.CHILD));
+        cars.children.add(new ExpandableListItem<>("VW", ExpandableListItem.Type.CHILD));
+        cars.children.add(new ExpandableListItem<>("Aston Martin", ExpandableListItem.Type.CHILD));
+        cars.children.add(new ExpandableListItem<>("Ferrari", ExpandableListItem.Type.CHILD));
+        data.add(cars);
+
+        data.add(new ExpandableListItem<>("About", ExpandableListItem.Type.MISC, ExpandableListItem.SubType.ABOUT));
+
         return data;
     }
 
