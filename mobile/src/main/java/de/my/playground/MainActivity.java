@@ -35,24 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(de.my.playground.R.layout.activity_main);
 
-        initializeBroadcastListener();
         initializeNavigationDrawerContent();
         initializeToolbarAndDrawer();
         initializeTabs();
-    }
-
-    private void initializeBroadcastListener() {
-        BroadcastReceiver br = new BroadcastReceiver(){
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                TextView tv = (TextView) findViewById(R.id.textview_broadcasts);
-                tv.append(intent.getAction() + System.getProperty ("line.separator"));
-            }
-        };
-
-        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_ON));
-        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_OFF));
-        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(br, new IntentFilter(getResources().getString(R.string.INTENT_BUTTON_PRESSED)));
     }
 
     private void initializeNavigationDrawerContent() {
@@ -126,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     private List<ExpandableListItem> generateFakeItems() {
         List<ExpandableListItem> data = new ArrayList<>();
 
-        data.add(new ExpandableListItem<>("Max Mustermann", ExpandableListItem.Type.HEADER));
+        data.add(new ExpandableListItem<>("Max Mustermann-max@mustermail.com-Muster Company", ExpandableListItem.Type.HEADER));
 
         ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADING);
         fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));

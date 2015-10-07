@@ -59,10 +59,11 @@ public class NavigationDrawerRecyclerViewAdapter extends RecyclerView.Adapter<Re
 
         switch (item.getType()) {
             case HEADER:
+                String[] split = item.getValue().toString().split("-");
                 HeaderViewHolder hvh = (HeaderViewHolder) holder;
-                hvh.name.setText(item.getValue().toString());
-                hvh.add_line1.setText(item.getValue().toString());
-                hvh.add_line2.setText(item.getValue().toString());
+                hvh.name.setText(split[0]);
+                hvh.add_line1.setText(split[1]);
+                hvh.add_line2.setText(split[2]);
                 break;
             case HEADING:
                 ListHeadingViewHolder itemController = (ListHeadingViewHolder) holder;
