@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="178dp"
-    android:background="@color/ColorPrimaryVeryDark"
+    android:background="@color/ColorAccent"
     android:orientation="vertical"
     android:weightSum="1"
     android:id="@+id/navigationdrawer_header">
@@ -18,16 +18,16 @@
         <TextView
             style="@style/NavigationDrawer.Header.Text.Heading"
             android:id="@+id/navigationdrawer_name"
-            android:text="Max Mustermann"/>
+            android:text="@string/example_name"/>
 
         <TextView
             style="@style/NavigationDrawer.Header.Text"
             android:id="@+id/navigationdrawer_add_line1"
-            android:text="Hospital"/>
+            android:text="@string/example_line1"/>
 
         <TextView
             style="@style/NavigationDrawer.Header.Text"
             android:id="@+id/navigationdrawer_add_line2"
-            android:text="Unit"/>
+            android:text="@string/example_line2"/>
     </LinearLayout>
 </RelativeLayout>

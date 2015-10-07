@@ -120,7 +120,6 @@ public class NavigationDrawerRecyclerViewAdapter extends RecyclerView.Adapter<Re
 
         public TextView header_title;
         public ImageView btn_expand_toggle;
-        public ExpandableListItem refferalItem;
 
         public ListHeadingViewHolder(View itemView) {
             super(itemView);

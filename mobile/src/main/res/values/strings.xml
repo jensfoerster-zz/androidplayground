@@ -10,5 +10,11 @@
     <!-- Main -->
 
     <string name="INTENT_BUTTON_PRESSED">custom.intent.action.BUTTON_PRESSED</string>
-    
+    <string name="send_broadcast">send broadcast</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="example_name">Max Mustermann</string>
+    <string name="example_line1">Line1</string>
+    <string name="example_line2">Line2</string>
+
 </resources>

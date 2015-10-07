@@ -11,6 +11,7 @@
     <dimen name="list_padding_left_indented2">37dp</dimen>
     <dimen name="list_padding_right">@dimen/list_padding_left</dimen>
 
+    <dimen name="appbar_padding_top">8dp</dimen>
 
     <!-- navigation drawer -->
     <dimen name="navdraw_padding_left">16dp</dimen>
@@ -19,5 +20,7 @@
     <dimen name="text_big">24sp</dimen>
     <dimen name="text_medium">20sp</dimen>
     <dimen name="text_small">16sp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>
