@@ -21,10 +21,11 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-        <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <fragment android:name="de.my.playground.BroadcastFragment"
+            android:id="@+id/broadcast_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_broadcast" />
 
     </LinearLayout>
 

@@ -9,4 +9,6 @@
     <string name="navigationdrawer_closed">closed</string>
     <!-- Main -->
 
+    <string name="INTENT_BUTTON_PRESSED">custom.intent.action.BUTTON_PRESSED</string>
+    
 </resources>

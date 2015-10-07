@@ -1,7 +1,11 @@
 package de.my.playground;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,29 +15,50 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.my.playground.NavigationDrawerRecyclerViewAdapter.ExpandableListItemType;
-
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(de.my.playground.R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
 
+        initializeBroadcastListener();
+        initializeNavigationDrawerContent();
+        initializeToolbarAndDrawer();
+    }
+
+    private void initializeBroadcastListener() {
+        BroadcastReceiver br = new BroadcastReceiver(){
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                TextView tv = (TextView) findViewById(R.id.textview_broadcasts);
+                tv.append(intent.getAction() + System.getProperty ("line.separator"));
+            }
+        };
+
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_ON));
+        registerReceiver(br, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(br,new IntentFilter(getResources().getString(R.string.INTENT_BUTTON_PRESSED)));
+    }
+
+    private void initializeNavigationDrawerContent() {
         RecyclerView recyclerview = (RecyclerView) findViewById(R.id.drawer_sliding);
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
         recyclerview.setAdapter(new NavigationDrawerRecyclerViewAdapter(generateFakeItems()));
+    }
+
+    private void initializeToolbarAndDrawer() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigationdrawer_open, R.string.navigationdrawer_closed) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -82,7 +107,7 @@ public class MainActivity extends AppCompatActivity  {
 
         data.add(new ExpandableListItem<>("Max Mustermann", ExpandableListItem.Type.HEADER));
 
-        ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADER);
+        ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADING);
         fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
         fruits.children.add(new ExpandableListItem<>("Orange", ExpandableListItem.Type.CHILD));
         fruits.children.add(new ExpandableListItem<>("Banana", ExpandableListItem.Type.CHILD));
@@ -90,7 +115,7 @@ public class MainActivity extends AppCompatActivity  {
         fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
         data.add(fruits);
 
-        ExpandableListItem cars = new ExpandableListItem<>("Cars", ExpandableListItem.Type.HEADER);
+        ExpandableListItem cars = new ExpandableListItem<>("Cars", ExpandableListItem.Type.HEADING);
         cars.children.add(new ExpandableListItem<>("Audi", ExpandableListItem.Type.CHILD));
         cars.children.add(new ExpandableListItem<>("BMW", ExpandableListItem.Type.CHILD));
         cars.children.add(new ExpandableListItem<>("VW", ExpandableListItem.Type.CHILD));
