@@ -16,5 +16,11 @@
     <string name="example_name">Max Mustermann</string>
     <string name="example_line1">Line1</string>
     <string name="example_line2">Line2</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="ok">OK</string>
+    <string name="lorem_long">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+    <string name="dialog_toolbar_title">this is a dialog</string>
+    <string name="dialog_full">Open fullscreen dialog</string>
+    <string name="dialog_popup">Open popup dialog</string>
 
 </resources>

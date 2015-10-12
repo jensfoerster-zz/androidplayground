@@ -2,14 +2,9 @@ package de.my.playground;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v13.app.FragmentPagerAdapter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -150,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     return new BroadcastFragment();
+                case 1:
+                    return new DialogExampleFragment();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
@@ -166,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Broadcast";
                 case 1:
-                    return "SECTION 2";
+                    return "Dialog";
                 case 2:
                     return "SECTION 3";
             }

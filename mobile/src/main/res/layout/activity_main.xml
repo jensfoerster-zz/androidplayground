@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="7dp"
     android:id="@+id/drawer_layout"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true">
@@ -19,7 +18,6 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/appbar_padding_top"
             android:theme="@style/AppTheme.AppBarOverlay"
             android:elevation="4dp">
 
@@ -27,7 +25,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
