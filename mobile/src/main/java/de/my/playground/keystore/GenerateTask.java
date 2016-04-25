@@ -46,7 +46,7 @@ public class GenerateTask extends AsyncTask<String, Void, Boolean> {
                 KeyPair kp = kpg.generateKeyPair();
                 return true;
             } else {
-                kpg.initialize();
+                //kpg.initialize();
                 KeyPair kp = kpg.generateKeyPair();
                 return true;
             }

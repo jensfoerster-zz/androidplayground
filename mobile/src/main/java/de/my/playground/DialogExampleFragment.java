@@ -26,7 +26,6 @@ public class DialogExampleFragment extends Fragment {
 
                         // Show details as dialog
                         detailsFragment.show(getFragmentManager(), "");
-                        //fragmentManager.beginTransaction().add(R.id.drawer_layout, detailsFragment).addToBackStack(null).commit();
 
                     }
                 });

@@ -10,9 +10,9 @@ import de.my.playground.keystore.KeyStoreUsageFragment;
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class MyFragmentPagetAdapter extends FragmentPagerAdapter {
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    public MyFragmentPagetAdapter(FragmentManager fm) {
+    public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
