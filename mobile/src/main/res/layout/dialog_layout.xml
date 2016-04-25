@@ -20,7 +20,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_long"
+        android:id="@+id/dialog_text"
+        android:padding="10dp"
         android:layout_below="@+id/dialog_toolbar"/>
 
     <LinearLayout

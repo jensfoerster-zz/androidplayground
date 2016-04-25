@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import de.my.playground.fragments.BroadcastFragment;
 import de.my.playground.fragments.DialogExampleFragment;
 import de.my.playground.fragments.ExpandableListFragment;
-import de.my.playground.fragments.PlaceholderFragment;
 import de.my.playground.keystore.KeyStoreUsageFragment;
 
 /**

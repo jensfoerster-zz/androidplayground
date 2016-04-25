@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    tools:context=".MainActivity"
-    android:padding="20dp">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/dialog_openfull"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/dialog_full"/>
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:context=".MainActivity"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/dialog_openpopup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/dialog_popup"/>
+        <Button
+            android:id="@+id/dialog_openfull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_full"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/dialog_openpopup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_popup"/>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
