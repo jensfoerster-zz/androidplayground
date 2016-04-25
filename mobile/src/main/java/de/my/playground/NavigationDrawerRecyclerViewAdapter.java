@@ -4,7 +4,6 @@ package de.my.playground;
  * Created by dep01181 on 9/21/2015.
  */
 import android.content.Context;
-import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,19 +33,19 @@ public class NavigationDrawerRecyclerViewAdapter extends RecyclerView.Adapter<Re
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (ExpandableListItemType.fromInt(type)) {
             case HEADER:
-                view = inflater.inflate(R.layout.navigationdrawer_header, parent, false);
+                view = inflater.inflate(R.layout.list_expandable_header, parent, false);
                 viewHolder = new HeaderViewHolder(view);
                 break;
             case HEADING:
-                view = inflater.inflate(R.layout.navigationdrawer_heading, parent, false);
+                view = inflater.inflate(R.layout.list_expandable_heading, parent, false);
                 viewHolder = new ListHeadingViewHolder(view);
                 break;
             case CHILD:
-                view = inflater.inflate(R.layout.navigationdrawer_entry, parent, false);
+                view = inflater.inflate(R.layout.list_expandable_entry, parent, false);
                 viewHolder = new CustomTestViewHolder(view);
                 break;
             case MISC:
-                view = inflater.inflate(R.layout.navigationdrawer_misc, parent, false);
+                view = inflater.inflate(R.layout.list_expandable_misc, parent, false);
                 viewHolder = new MiscItemViewHolder(view);
                 break;
         }

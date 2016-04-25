@@ -1,4 +1,4 @@
-package de.my.playground;
+package de.my.playground.fragments;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -14,6 +14,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import de.my.playground.R;
 
 
 public class DetailsDialog extends DialogFragment {

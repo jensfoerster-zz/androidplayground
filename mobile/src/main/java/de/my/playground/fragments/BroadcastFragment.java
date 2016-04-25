@@ -1,4 +1,4 @@
-package de.my.playground;
+package de.my.playground.fragments;
 
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import de.my.playground.R;
 
 /**
  * Created by dep01181 on 9/30/2015.

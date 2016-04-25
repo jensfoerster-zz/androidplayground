@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeNavigationDrawerContent() {
         RecyclerView recyclerview = (RecyclerView) findViewById(R.id.drawer_sliding);
+        assert recyclerview != null;
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerview.setAdapter(new NavigationDrawerRecyclerViewAdapter(generateFakeItems()));
+        //TODO: Fill drawer
     }
 
     private void initializeToolbarAndDrawer() {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 // Code here will execute once drawer is closed
             }
         };
+        assert drawer != null;
         drawer.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
@@ -64,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         ViewPager mViewPager = (ViewPager) findViewById(R.id.tabContainer);
+        assert mViewPager != null;
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_main);
+        assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
@@ -96,31 +100,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    private List<ExpandableListItem> generateFakeItems() {
-        List<ExpandableListItem> data = new ArrayList<>();
-
-        data.add(new ExpandableListItem<>("Max Mustermann-max@mustermail.com-Muster Company", ExpandableListItem.Type.HEADER));
-
-        ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADING);
-        fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
-        fruits.children.add(new ExpandableListItem<>("Orange", ExpandableListItem.Type.CHILD));
-        fruits.children.add(new ExpandableListItem<>("Banana", ExpandableListItem.Type.CHILD));
-        fruits.children.add(new ExpandableListItem<>("Grape", ExpandableListItem.Type.CHILD));
-        fruits.children.add(new ExpandableListItem<>("Apple", ExpandableListItem.Type.CHILD));
-        data.add(fruits);
-
-        ExpandableListItem cars = new ExpandableListItem<>("Cars", ExpandableListItem.Type.HEADING);
-        cars.children.add(new ExpandableListItem<>("Audi", ExpandableListItem.Type.CHILD));
-        cars.children.add(new ExpandableListItem<>("BMW", ExpandableListItem.Type.CHILD));
-        cars.children.add(new ExpandableListItem<>("VW", ExpandableListItem.Type.CHILD));
-        cars.children.add(new ExpandableListItem<>("Aston Martin", ExpandableListItem.Type.CHILD));
-        cars.children.add(new ExpandableListItem<>("Ferrari", ExpandableListItem.Type.CHILD));
-        data.add(cars);
-
-        data.add(new ExpandableListItem<>("About", ExpandableListItem.Type.MISC, ExpandableListItem.SubType.ABOUT));
-
-        return data;
-    }
-
 }
