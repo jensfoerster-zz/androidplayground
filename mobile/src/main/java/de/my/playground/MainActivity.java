@@ -60,17 +60,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeTabs() {
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+        // Create the adapter that will return a fragment for each of the primary sections of the activity.
         MyFragmentPagerAdapter mSectionsPagerAdapter = new MyFragmentPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         ViewPager mViewPager = (ViewPager) findViewById(R.id.tabContainer);
-        assert mViewPager != null;
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_main);
-        assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
