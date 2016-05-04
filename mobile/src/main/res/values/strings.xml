@@ -36,4 +36,7 @@
     <string name="keystore_generate">Generate</string>
     <string name="keystore_no_alias_error">Must supply an alias</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

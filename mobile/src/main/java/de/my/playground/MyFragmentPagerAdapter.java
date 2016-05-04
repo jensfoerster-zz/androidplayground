@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import de.my.playground.fragments.BroadcastFragment;
 import de.my.playground.fragments.DialogExampleFragment;
 import de.my.playground.fragments.ExpandableListFragment;
+import de.my.playground.fragments.Scrollable.TwoWayScrollFragment;
 import de.my.playground.keystore.KeyStoreUsageFragment;
 
 /**
@@ -28,6 +29,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         mFragments.add(new Pair<String, Fragment>("Dialog", new DialogExampleFragment()));
         mFragments.add(new Pair<String, Fragment>("KeyStore", new KeyStoreUsageFragment()));
         mFragments.add(new Pair<String, Fragment>("List", new ExpandableListFragment()));
+        mFragments.add(new Pair<String, Fragment>("Scrollable", new TwoWayScrollFragment()));
     }
 
     @Override
