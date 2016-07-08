@@ -1,4 +1,4 @@
-package de.my.playground;
+package de.my.playground.adapter;
 
 /**
  * Created by dep01181 on 9/21/2015.
@@ -15,14 +15,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.my.playground.ExpandableListItem;
+import de.my.playground.R;
+
 /**
  * Created by anandbose on 09/06/15.
  * https://github.com/anandbose/ExpandableListViewDemo/
  */
-public class NavigationDrawerRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<ExpandableListItem> displayedData;
 
-    public NavigationDrawerRecyclerViewAdapter(List<ExpandableListItem> data) {
+    public ExpandableListAdapter(List<ExpandableListItem> data) {
         displayedData = data;
     }
 
@@ -33,7 +36,7 @@ public class NavigationDrawerRecyclerViewAdapter extends RecyclerView.Adapter<Re
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (ExpandableListItemType.fromInt(type)) {
             case HEADER:
-                view = inflater.inflate(R.layout.list_expandable_header, parent, false);
+                view = inflater.inflate(R.layout.list_header, parent, false);
                 viewHolder = new HeaderViewHolder(view);
                 break;
             case HEADING:

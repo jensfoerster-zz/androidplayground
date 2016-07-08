@@ -1,8 +1,8 @@
 package de.my.playground;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import de.my.playground.adapter.FragmentInfo;
+import de.my.playground.adapter.NavigationDrawerAdapter;
+import de.my.playground.fragments.BroadcastFragment;
+import de.my.playground.fragments.TabFragment;
+
+public class MainActivity extends AppCompatActivity implements NavigationDrawerAdapter.NavigationDrawerListener {
+
+    DrawerLayout mDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,51 +30,45 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(de.my.playground.R.layout.activity_main);
 
-        initializeNavigationDrawerContent();
         initializeToolbarAndDrawer();
-        initializeTabs();
-    }
 
-    private void initializeNavigationDrawerContent() {
-        RecyclerView recyclerview = (RecyclerView) findViewById(R.id.drawer_sliding);
-        assert recyclerview != null;
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-        //TODO: Fill drawer
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, new TabFragment());
+        ft.commit();
     }
 
     private void initializeToolbarAndDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigationdrawer_open, R.string.navigationdrawer_closed) {
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.navigationdrawer_open, R.string.navigationdrawer_closed) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                // Code here will execute once drawer is opened
+                // Code here will execute once mDrawer is opened
             }
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                // Code here will execute once drawer is closed
+                // Code here will execute once mDrawer is closed
             }
         };
-        assert drawer != null;
-        drawer.setDrawerListener(drawerToggle);
+        assert mDrawer != null;
+        mDrawer.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        RecyclerView recyclerview = (RecyclerView) findViewById(R.id.drawer_sliding);
+        assert recyclerview != null;
+        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerview.setAdapter(new NavigationDrawerAdapter(this, createFragmentList(), this));
     }
 
-    private void initializeTabs() {
-        // Create the adapter that will return a fragment for each of the primary sections of the activity.
-        MyFragmentPagerAdapter mSectionsPagerAdapter = new MyFragmentPagerAdapter(getFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.tabContainer);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_main);
-        tabLayout.setupWithViewPager(mViewPager);
+    private ArrayList<FragmentInfo> createFragmentList() {
+        ArrayList<FragmentInfo> infos = new ArrayList<>();
+        infos.add(new FragmentInfo("Tabs", null, new TabFragment()));
+        infos.add(new FragmentInfo("Broadcast", null, new BroadcastFragment()));
+        return infos;
     }
 
     @Override
@@ -96,5 +96,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onNavigationDrawerItemSelected(Fragment f) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.commit();
+        mDrawer.closeDrawers();
     }
 }

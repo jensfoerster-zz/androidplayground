@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.my.playground.ExpandableListItem;
-import de.my.playground.NavigationDrawerRecyclerViewAdapter;
+import de.my.playground.adapter.ExpandableListAdapter;
 import de.my.playground.R;
 
 /**
@@ -35,7 +35,7 @@ public class ExpandableListFragment extends Fragment {
         RecyclerView recyclerview = (RecyclerView) v.findViewById(R.id.exp_list_recycler);
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerview.setAdapter(new NavigationDrawerRecyclerViewAdapter(generateFakeItems()));
+        recyclerview.setAdapter(new ExpandableListAdapter(generateFakeItems()));
     }
 
     private List<ExpandableListItem> generateFakeItems() {

@@ -1,4 +1,4 @@
-package de.my.playground;
+package de.my.playground.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -25,7 +25,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         mFragments = new ArrayList<>();
-        mFragments.add(new Pair<String, Fragment>("Broadcast", new BroadcastFragment()));
+        //mFragments.add(new Pair<String, Fragment>("Broadcast", new BroadcastFragment()));
         mFragments.add(new Pair<String, Fragment>("Dialog", new DialogExampleFragment()));
         mFragments.add(new Pair<String, Fragment>("KeyStore", new KeyStoreUsageFragment()));
         mFragments.add(new Pair<String, Fragment>("List", new ExpandableListFragment()));
