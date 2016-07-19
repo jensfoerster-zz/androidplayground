@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(de.my.playground.R.layout.activity_main);
 
         initializeToolbarAndDrawer();
+
+        if (savedInstanceState == null)
+            nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_tabs, 0);
     }
 
     private void initializeToolbarAndDrawer() {
@@ -44,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle = setupDrawerToggle(mDrawer, toolbar);
         mDrawer.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-
-        nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_tabs, 0);
     }
 
     private void setupDrawer(NavigationView navigationView) {
@@ -55,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        if (mPrevMenuItem == null || !mPrevMenuItem.equals(menuItem)) {
-                            mPrevMenuItem = menuItem;
-                            selectDrawerItem(menuItem);
-                        }
+                        selectDrawerItem(menuItem, mPrevMenuItem);
+                        mPrevMenuItem = menuItem;
                         return true;
                     }
                 });
@@ -111,33 +110,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void selectDrawerItem(MenuItem menuItem) {
-        // Create a new fragment and specify the fragment to show based on nav item clicked
-        Fragment fragment = null;
-        Class fragmentClass;
-        switch (menuItem.getItemId()) {
-            case R.id.nav_frag_tabs:
-                fragmentClass = TabFragment.class;
-                break;
-            case R.id.nav_frag_bc:
-                fragmentClass = BroadcastFragment.class;
-                break;
-            case R.id.nav_frag_sound:
-                fragmentClass = SoundFragment.class;
-                break;
-            default:
-                fragmentClass = PlaceholderFragment.class;
-        }
+    public void selectDrawerItem(MenuItem menuItem, MenuItem previousItem) {
 
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //only replace the fragment if it is new.
+        if (previousItem == null || !previousItem.equals(menuItem)) {
+            Fragment fragment = null;
+            Class fragmentClass;
+            switch (menuItem.getItemId()) {
+                case R.id.nav_frag_tabs:
+                    fragmentClass = TabFragment.class;
+                    break;
+                case R.id.nav_frag_bc:
+                    fragmentClass = BroadcastFragment.class;
+                    break;
+                case R.id.nav_frag_sound:
+                    fragmentClass = SoundFragment.class;
+                    break;
+                default:
+                    fragmentClass = PlaceholderFragment.class;
+            }
 
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        }
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);

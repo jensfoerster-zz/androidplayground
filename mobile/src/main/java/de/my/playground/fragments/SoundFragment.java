@@ -1,6 +1,8 @@
 package de.my.playground.fragments;
 
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 import de.my.playground.R;
 
@@ -27,11 +31,11 @@ public class SoundFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_sound, container, false);
 
-        mTextView = (TextView)v.findViewById(R.id.sf_txt);
+        mTextView = (TextView) v.findViewById(R.id.sf_txt);
 
         FloatingActionButton play = (FloatingActionButton) v.findViewById(R.id.sf_fab);
         play.setOnClickListener(
@@ -44,10 +48,45 @@ public class SoundFragment extends Fragment {
         return v;
     }
 
+    private boolean sSoundLock = false;
     private void playNotificationSound() {
-        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        MediaPlayer player = MediaPlayer.create(getContext(), notification);
-        player.setVolume(1.0f, 1.0f);
-        player.start();
+
+        if(sSoundLock) return;
+
+        sSoundLock = true;
+
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        MediaPlayer mp = new MediaPlayer();
+        mp.setVolume(1, 1);
+        mp.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+        mp.setLooping(false);
+        try {
+            mp.setDataSource(getContext(), sound);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        mp.prepareAsync();
+
+        final AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+        final int maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+        final int currentVolume = am.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+
+        mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, maxVolume, 0);
+                mp.start();
+            }
+        });
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+                sSoundLock = false;
+            }
+        });
+        mTextView.append("BEEP " + currentVolume + "/" + maxVolume + System.getProperty("line.separator"));
     }
 }
