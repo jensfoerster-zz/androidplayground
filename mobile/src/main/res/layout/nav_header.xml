@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigationdrawer_header"
+    android:layout_width="match_parent"
+    android:layout_height="178dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/ColorAccent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:gravity="bottom">
+
+    <TextView
+        android:id="@+id/nav_name"
+        style="@style/NavigationDrawer.Header.Text.Heading"
+        android:text="@string/example_name" />
+
+    <TextView
+        android:id="@+id/nav_line1"
+        style="@style/NavigationDrawer.Header.Text"
+        android:text="@string/example_line1" />
+
+    <TextView
+        android:id="@+id/nav_line2"
+        style="@style/NavigationDrawer.Header.Text"
+        android:text="@string/example_line2" />
+</LinearLayout>

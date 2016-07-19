@@ -35,10 +35,6 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         RecyclerView.ViewHolder viewHolder = null;
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         switch (ExpandableListItemType.fromInt(type)) {
-            case HEADER:
-                view = inflater.inflate(R.layout.list_header, parent, false);
-                viewHolder = new HeaderViewHolder(view);
-                break;
             case HEADING:
                 view = inflater.inflate(R.layout.list_expandable_heading, parent, false);
                 viewHolder = new ListHeadingViewHolder(view);
@@ -60,13 +56,6 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ExpandableListItem item = getItemForDisplayPosition(position);
 
         switch (item.getType()) {
-            case HEADER:
-                String[] split = item.getValue().toString().split("-");
-                HeaderViewHolder hvh = (HeaderViewHolder) holder;
-                hvh.name.setText(split[0]);
-                hvh.add_line1.setText(split[1]);
-                hvh.add_line2.setText(split[2]);
-                break;
             case HEADING:
                 ListHeadingViewHolder itemController = (ListHeadingViewHolder) holder;
                 itemController.onBindView(item);
@@ -167,20 +156,6 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                }
            });
        }
-    }
-
-    private class HeaderViewHolder extends RecyclerView.ViewHolder{
-
-        public TextView name;
-        public TextView add_line1;
-        public TextView add_line2;
-
-        public HeaderViewHolder(View itemView) {
-            super(itemView);
-            name = (TextView) itemView.findViewById(R.id.navigationdrawer_name);
-            add_line1 = (TextView) itemView.findViewById(R.id.navigationdrawer_add_line1);
-            add_line2 = (TextView) itemView.findViewById(R.id.navigationdrawer_add_line2);
-        }
     }
 
     private class CustomTestViewHolder extends RecyclerView.ViewHolder{

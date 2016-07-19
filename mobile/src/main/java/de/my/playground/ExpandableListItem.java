@@ -63,7 +63,6 @@ public class ExpandableListItem<T> {
     }
 
     public enum Type {
-        HEADER(0),
         HEADING(1),
         CHILD(2),
         MISC(3),

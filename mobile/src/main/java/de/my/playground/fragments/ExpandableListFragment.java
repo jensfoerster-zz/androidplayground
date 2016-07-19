@@ -41,9 +41,6 @@ public class ExpandableListFragment extends Fragment {
     private List<ExpandableListItem> generateFakeItems() {
         List<ExpandableListItem> data = new ArrayList<>();
 
-        //Big header
-        //data.add(new ExpandableListItem<>("Max Mustermann-max@mustermail.com-Muster Company", ExpandableListItem.Type.HEADER));
-
         //Expandable Heading
         ExpandableListItem fruits = new ExpandableListItem<>("Fruit", ExpandableListItem.Type.HEADING);
         //Children

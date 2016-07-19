@@ -1,28 +1,30 @@
 package de.my.playground;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import de.my.playground.adapter.FragmentInfo;
-import de.my.playground.adapter.NavigationDrawerAdapter;
 import de.my.playground.fragments.BroadcastFragment;
+import de.my.playground.fragments.PlaceholderFragment;
+import de.my.playground.fragments.SoundFragment;
 import de.my.playground.fragments.TabFragment;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawerAdapter.NavigationDrawerListener {
+public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawer;
+    private NavigationView nvDrawer;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,34 +43,38 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerA
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.navigationdrawer_open, R.string.navigationdrawer_closed) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                // Code here will execute once mDrawer is opened
-            }
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                // Code here will execute once mDrawer is closed
-            }
-        };
-        assert mDrawer != null;
-        mDrawer.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
+        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        setupDrawer(nvDrawer);
 
-        RecyclerView recyclerview = (RecyclerView) findViewById(R.id.drawer_sliding);
-        assert recyclerview != null;
-        recyclerview.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerview.setAdapter(new NavigationDrawerAdapter(this, createFragmentList(), this));
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerToggle = setupDrawerToggle(mDrawer, toolbar);
+        mDrawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
+
     }
 
-    private ArrayList<FragmentInfo> createFragmentList() {
-        ArrayList<FragmentInfo> infos = new ArrayList<>();
-        infos.add(new FragmentInfo("Tabs", null, new TabFragment()));
-        infos.add(new FragmentInfo("Broadcast", null, new BroadcastFragment()));
-        return infos;
+    private void setupDrawer(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
+                    }
+                });
+
+        Menu menu = navigationView.getMenu();
+//        menu.add(1, R.id.frag_tabs, Menu.NONE, "Tabs");
+//        menu.add(1, R.id.frag_bc, Menu.NONE, "Broadcast");
+//        menu.add(1, R.id.frag_sound, Menu.NONE, "Sound");
+
+        //already inflated in xml
+        //View hv = navigationView.inflateHeaderView(R.layout.nav_header);
+        TextView tv = (TextView) navigationView.findViewById(R.id.nav_name);
+    }
+
+    private ActionBarDrawerToggle setupDrawerToggle(DrawerLayout drawer, Toolbar toolbar) {
+        return new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
     }
 
     @Override
@@ -88,21 +94,56 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerA
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == de.my.playground.R.id.action_settings) {
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
+            case de.my.playground.R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(Fragment f) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, f);
-        ft.commit();
+    public void selectDrawerItem(MenuItem menuItem) {
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch(menuItem.getItemId()) {
+            case R.id.nav_frag_tabs:
+                fragmentClass = TabFragment.class;
+                break;
+            case R.id.nav_frag_bc:
+                fragmentClass = BroadcastFragment.class;
+                break;
+            case R.id.nav_frag_sound:
+                fragmentClass = SoundFragment.class;
+                break;
+            default:
+                fragmentClass = PlaceholderFragment.class;
+        }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
         mDrawer.closeDrawers();
     }
+
 }

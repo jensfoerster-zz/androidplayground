@@ -31,7 +31,7 @@ public class TabFragment extends Fragment {
         MyFragmentPagerAdapter mSectionsPagerAdapter = new MyFragmentPagerAdapter(getActivity().getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        ViewPager mViewPager = (ViewPager) v.findViewById(R.id.tabContainer);
+        ViewPager mViewPager = (ViewPager)(v.findViewById(R.id.tabContainer));
         assert mViewPager != null;
         mViewPager.setAdapter(mSectionsPagerAdapter);
 

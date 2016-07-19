@@ -7,7 +7,6 @@ import android.support.v4.util.Pair;
 
 import java.util.ArrayList;
 
-import de.my.playground.fragments.BroadcastFragment;
 import de.my.playground.fragments.DialogExampleFragment;
 import de.my.playground.fragments.ExpandableListFragment;
 import de.my.playground.fragments.Scrollable.TwoWayScrollFragment;
@@ -25,7 +24,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         mFragments = new ArrayList<>();
-        //mFragments.add(new Pair<String, Fragment>("Broadcast", new BroadcastFragment()));
         mFragments.add(new Pair<String, Fragment>("Dialog", new DialogExampleFragment()));
         mFragments.add(new Pair<String, Fragment>("KeyStore", new KeyStoreUsageFragment()));
         mFragments.add(new Pair<String, Fragment>("List", new ExpandableListFragment()));
