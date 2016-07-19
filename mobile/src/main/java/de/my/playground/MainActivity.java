@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import de.my.playground.fragments.BroadcastFragment;
@@ -33,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(de.my.playground.R.layout.activity_main);
 
         initializeToolbarAndDrawer();
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new TabFragment());
-        ft.commit();
     }
 
     private void initializeToolbarAndDrawer() {
@@ -51,17 +45,24 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
+        nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_tabs, 0);
     }
 
     private void setupDrawer(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
+                    public MenuItem mPrevMenuItem = null;
+
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
+                        if (mPrevMenuItem == null || !mPrevMenuItem.equals(menuItem)) {
+                            mPrevMenuItem = menuItem;
+                            selectDrawerItem(menuItem);
+                        }
                         return true;
                     }
                 });
+
 
         Menu menu = navigationView.getMenu();
 //        menu.add(1, R.id.frag_tabs, Menu.NONE, "Tabs");
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_frag_tabs:
                 fragmentClass = TabFragment.class;
                 break;
