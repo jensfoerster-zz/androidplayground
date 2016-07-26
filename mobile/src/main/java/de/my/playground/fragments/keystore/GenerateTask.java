@@ -1,4 +1,4 @@
-package de.my.playground.keystore;
+package de.my.playground.fragments.keystore;
 
 import android.os.AsyncTask;
 import android.os.Build;

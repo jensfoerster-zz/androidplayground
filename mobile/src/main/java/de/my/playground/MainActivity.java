@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import de.my.playground.fragments.BroadcastFragment;
+import de.my.playground.fragments.MapFragment;
 import de.my.playground.fragments.PlaceholderFragment;
+import de.my.playground.fragments.Scrollable.TwoWayScrollFragment;
 import de.my.playground.fragments.SoundFragment;
 import de.my.playground.fragments.TabFragment;
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         initializeToolbarAndDrawer();
 
         if (savedInstanceState == null)
-            nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_tabs, 0);
+            nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_map, 0);
     }
 
     private void initializeToolbarAndDrawer() {
@@ -125,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_frag_sound:
                     fragmentClass = SoundFragment.class;
+                    break;
+                case R.id.nav_frag_map:
+                    fragmentClass = MapFragment.class;
+                    break;
+                case R.id.nav_frag_scroll:
+                    fragmentClass = TwoWayScrollFragment.class;
                     break;
                 default:
                     fragmentClass = PlaceholderFragment.class;

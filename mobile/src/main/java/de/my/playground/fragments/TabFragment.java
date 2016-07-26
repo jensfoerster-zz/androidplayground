@@ -20,7 +20,6 @@ public class TabFragment extends Fragment {
 
     public TabFragment() {
         // Required empty public constructor
-
     }
 
     @Override
@@ -28,7 +27,7 @@ public class TabFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_tab, container, false);
 
-        MyFragmentPagerAdapter mSectionsPagerAdapter = new MyFragmentPagerAdapter(getActivity().getFragmentManager());
+        MyFragmentPagerAdapter mSectionsPagerAdapter = new MyFragmentPagerAdapter(getActivity().getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         ViewPager mViewPager = (ViewPager)(v.findViewById(R.id.tabContainer));
@@ -38,6 +37,7 @@ public class TabFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tabs_main);
         assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.invalidate();
 
         return v;
     }

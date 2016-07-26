@@ -48,12 +48,11 @@ public class SoundFragment extends Fragment {
         return v;
     }
 
-    private boolean sSoundLock = false;
+    private boolean sSoundPlaying = false;
     private void playNotificationSound() {
+        if(sSoundPlaying) return;
 
-        if(sSoundLock) return;
-
-        sSoundLock = true;
+        sSoundPlaying = true;
 
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
@@ -84,7 +83,7 @@ public class SoundFragment extends Fragment {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 am.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-                sSoundLock = false;
+                sSoundPlaying = false;
             }
         });
         mTextView.append("BEEP " + currentVolume + "/" + maxVolume + System.getProperty("line.separator"));

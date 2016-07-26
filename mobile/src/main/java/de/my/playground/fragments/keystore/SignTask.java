@@ -1,6 +1,5 @@
-package de.my.playground.keystore;
+package de.my.playground.fragments.keystore;
 
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Base64;
 import android.util.Log;
@@ -18,59 +17,46 @@ import java.security.cert.CertificateException;
 /**
  * Created by dep01181 on 12/15/2015.
  */
-public class VerifyTask extends AsyncTask<String, Void, Boolean> {
+public class SignTask extends AsyncTask<String, Void, String> {
     private static final String TAG = "KeyStore.SignTask";
-
     private KeyStoreUsageFragment keyStoreUsageFragment;
 
-    public VerifyTask(KeyStoreUsageFragment keyStoreUsageFragment) {
+    public SignTask(KeyStoreUsageFragment keyStoreUsageFragment) {
         this.keyStoreUsageFragment = keyStoreUsageFragment;
     }
 
     @Override
-    protected Boolean doInBackground(String... params) {
+    protected String doInBackground(String... params) {
         final String alias = params[0];
         final String dataString = params[1];
-        final String signatureString = params[2];
         try {
             byte[] data = dataString.getBytes();
-            byte[] signature;
-            try {
-                signature = Base64.decode(signatureString, Base64.DEFAULT);
-            } catch (IllegalArgumentException e) {
-                signature = new byte[0];
-            }
             /*
-             * Verify a signature previously made by a PrivateKey in our
-             * KeyStore. This uses the X.509 certificate attached to our
-             * private key in the KeyStore to validate a previously
-             * generated signature.
+             * Use a PrivateKey in the KeyStore to create a signature over
+             * some data.
              */
             KeyStore ks = KeyStore.getInstance("AndroidKeyStore");
             ks.load(null);
             KeyStore.Entry entry = ks.getEntry(alias, null);
             if (!(entry instanceof KeyStore.PrivateKeyEntry)) {
                 Log.w(TAG, "Not an instance of a PrivateKeyEntry");
-                return false;
+                return null;
             }
             Signature s = Signature.getInstance("SHA256withECDSA");
-            s.initVerify(((KeyStore.PrivateKeyEntry) entry).getCertificate());
+            s.initSign(((KeyStore.PrivateKeyEntry) entry).getPrivateKey());
             s.update(data);
-            return s.verify(signature);
+            byte[] signature = s.sign();
+            return Base64.encodeToString(signature, Base64.DEFAULT);
         } catch (NoSuchAlgorithmException | KeyStoreException | CertificateException
                  | IOException | UnrecoverableEntryException | InvalidKeyException | SignatureException e) {
             Log.w(TAG, "Could not generate key", e);
-            return false;
+            return null;
         }
     }
 
     @Override
-    protected void onPostExecute(Boolean result) {
-        if (result) {
-            keyStoreUsageFragment.mCipherText.setTextColor(Color.GREEN);
-        } else {
-            keyStoreUsageFragment.mCipherText.setTextColor(Color.RED);
-        }
+    protected void onPostExecute(String result) {
+        keyStoreUsageFragment.mCipherText.setText(result);
         keyStoreUsageFragment.setKeyActionButtonsEnabled(true);
     }
 
@@ -78,6 +64,5 @@ public class VerifyTask extends AsyncTask<String, Void, Boolean> {
     protected void onCancelled() {
         keyStoreUsageFragment.mCipherText.setText("error!");
         keyStoreUsageFragment.setKeyActionButtonsEnabled(true);
-        keyStoreUsageFragment.mCipherText.setTextColor(keyStoreUsageFragment.getResources().getColor(android.R.color.primary_text_dark));
     }
 }

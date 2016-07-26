@@ -1,4 +1,4 @@
-package de.my.playground.keystore;
+package de.my.playground.fragments.keystore;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

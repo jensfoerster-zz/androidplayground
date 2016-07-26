@@ -1,8 +1,8 @@
 package de.my.playground.adapter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.Pair;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import de.my.playground.fragments.DialogExampleFragment;
 import de.my.playground.fragments.ExpandableListFragment;
 import de.my.playground.fragments.Scrollable.TwoWayScrollFragment;
-import de.my.playground.keystore.KeyStoreUsageFragment;
+import de.my.playground.fragments.keystore.KeyStoreUsageFragment;
 
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -24,10 +24,10 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         mFragments = new ArrayList<>();
-        mFragments.add(new Pair<String, Fragment>("Dialog", new DialogExampleFragment()));
-        mFragments.add(new Pair<String, Fragment>("KeyStore", new KeyStoreUsageFragment()));
-        mFragments.add(new Pair<String, Fragment>("List", new ExpandableListFragment()));
-        mFragments.add(new Pair<String, Fragment>("Scrollable", new TwoWayScrollFragment()));
+        mFragments.add(new Pair<>("Dialog", new DialogExampleFragment()));
+        mFragments.add(new Pair<>("KeyStore", new KeyStoreUsageFragment()));
+        mFragments.add(new Pair<>("List", new ExpandableListFragment()));
+        mFragments.add(new Pair<>("Scrollable", new TwoWayScrollFragment()));
     }
 
     @Override

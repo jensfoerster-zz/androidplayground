@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License
  */
-package de.my.playground.keystore;
+package de.my.playground.fragments.keystore;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
