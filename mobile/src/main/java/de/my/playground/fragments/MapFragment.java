@@ -87,7 +87,7 @@ public class MapFragment extends SupportMapFragment {
     /***
      * This will set a marker on the map.
      * In addition it will send a telnet request to the mock location API
-     * introduced by "mockLocationFix" and start the pokemon go app..
+     * introduced by "mockLocationFix"
      * '''⌐(ಠ۾ಠ)¬'''
      *
      * @param latLng
@@ -111,12 +111,9 @@ public class MapFragment extends SupportMapFragment {
             @Override
             protected Boolean doInBackground(Void[] objects) {
                 try {
-                    launchApp("com.nianticlabs.pokemongo");
                     boolean success;
                     Thread.sleep(2000);
                     success = postToMockLocationFixup(latLng);
-                    Thread.sleep(2000 + new Random().nextInt(500));
-                    success &= postToMockLocationFixup(new LatLng(latLng.latitude + randomInRange(0.00001, 0.00003), latLng.longitude + randomInRange(0.00001, 0.00003)));
                     return success;
                 } catch (Exception e) {
                     return false;
@@ -137,19 +134,12 @@ public class MapFragment extends SupportMapFragment {
                     mMarker.setAlpha(1.0f);
                 } else {
                     if (mMarker != null) {
-                        mMarker.remove();
-                        mMarker = null;
-                        launchApp("de.my.playground");
+                        mMarker.setAlpha(.7f);
                     }
                 }
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
-
-    private double randomInRange(double min, double max) {
-        return (( new Random().nextDouble() * (max - min) ) + min);
-    }
-
 
     private boolean postToMockLocationFixup(LatLng latLng) {
         try {
@@ -163,14 +153,6 @@ public class MapFragment extends SupportMapFragment {
             return true;
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    private void launchApp(String packageName) {
-        PackageManager pmi = getContext().getPackageManager();
-        Intent intent = pmi.getLaunchIntentForPackage(packageName);
-        if (intent != null) {
-            startActivity(intent);
         }
     }
 }
