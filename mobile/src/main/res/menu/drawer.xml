@@ -22,5 +22,10 @@
             android:icon="@android:drawable/ic_dialog_dialer"
             android:title="TwoWay Scrolling"
             />
+        <item
+            android:id="@+id/nav_frag_notification"
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="Notification"
+            />
     </group>
 </menu>

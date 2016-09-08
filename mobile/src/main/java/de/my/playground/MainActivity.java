@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import de.my.playground.fragments.BroadcastFragment;
 import de.my.playground.fragments.MapFragment;
+import de.my.playground.fragments.NotificationFragment;
 import de.my.playground.fragments.PlaceholderFragment;
 import de.my.playground.fragments.Scrollable.TwoWayScrollFragment;
 import de.my.playground.fragments.SoundFragment;
@@ -65,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-        Menu menu = navigationView.getMenu();
+//        Menu menu = navigationView.getMenu();
 //        menu.add(1, R.id.frag_tabs, Menu.NONE, "Tabs");
 //        menu.add(1, R.id.frag_bc, Menu.NONE, "Broadcast");
 //        menu.add(1, R.id.frag_sound, Menu.NONE, "Sound");
 
         //already inflated in xml
         //View hv = navigationView.inflateHeaderView(R.layout.nav_header);
-        TextView tv = (TextView) navigationView.findViewById(R.id.nav_name);
+//        TextView tv = (TextView) navigationView.findViewById(R.id.nav_name);
     }
 
     private ActionBarDrawerToggle setupDrawerToggle(DrawerLayout drawer, Toolbar toolbar) {
@@ -133,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_frag_scroll:
                     fragmentClass = TwoWayScrollFragment.class;
+                    break;
+                case R.id.nav_frag_notification:
+                    fragmentClass = NotificationFragment.class;
                     break;
                 default:
                     fragmentClass = PlaceholderFragment.class;
