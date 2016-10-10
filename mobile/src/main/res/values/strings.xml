@@ -45,7 +45,7 @@
 
     <string name="action_example">Example action</string>
     <string name="notif_add">Add</string>
-    <string name="notif_update">Update</string>
+    <string name="notif_cancel">Cancel</string>
     <string name="notif_clear">Clear</string>
 
 </resources>

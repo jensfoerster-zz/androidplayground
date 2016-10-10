@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.my.playground.ExpandableListItem;
+import de.my.playground.misc.ExpandableListItem;
 import de.my.playground.adapter.ExpandableListAdapter;
 import de.my.playground.R;
 

@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import de.my.playground.misc.CustomIntent;
 
 /**
  * Created by dep01181 on 07.09.2016.
  */
 public class NLService extends NotificationListenerService {
 
-    public static String TAG = "NotificationListenerTesting";
+    public static String TAG = "NLService";
 
     @Override
     public void onCreate() {
@@ -26,17 +29,22 @@ public class NLService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        TAG = "onNotificationPosted";
-        Log.d(TAG, "id = " + sbn.getId() + "Package Name" + sbn.getPackageName() +
+        Log.d(TAG, "onNotificationPosted id = " + sbn.getId() + "Package Name" + sbn.getPackageName() +
                 "Post time = " + sbn.getPostTime() + "Tag = " + sbn.getTag());
+
+        Intent i = new Intent(CustomIntent.NOTIFICATION_POSTED_ACTION);
+        i.putExtra(CustomIntent.NOTIFICATION_POSTED_EXTRA, sbn.getId());
+        LocalBroadcastManager.getInstance(this).sendBroadcast(i);
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        TAG = "onNotificationRemoved";
-        Log.d(TAG, "id = " + sbn.getId() + "Package Name" + sbn.getPackageName() +
+        Log.d(TAG, "onNotificationRemoved id = " + sbn.getId() + "Package Name" + sbn.getPackageName() +
                 "Post time = " + sbn.getPostTime() + "Tag = " + sbn.getTag());
 
+        Intent i = new Intent(CustomIntent.NOTIFICATION_REMOVED_ACTION);
+        i.putExtra(CustomIntent.NOTIFICATION_REMOVED_EXTRA, sbn.getId());
+        LocalBroadcastManager.getInstance(this).sendBroadcast(i);
     }
 
     public class ServiceBinder {

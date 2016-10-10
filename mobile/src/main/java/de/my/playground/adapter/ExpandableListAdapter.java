@@ -15,7 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.my.playground.ExpandableListItem;
+import de.my.playground.misc.ExpandableListItem;
 import de.my.playground.R;
 
 /**

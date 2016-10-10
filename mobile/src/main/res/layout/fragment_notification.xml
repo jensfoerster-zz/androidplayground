@@ -20,25 +20,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        style="?android:attr/buttonBarStyle">
         <Button
             android:id="@+id/notif_btn_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/notif_add"/>
+            android:text="@string/notif_add"
+            style="?android:attr/buttonBarButtonStyle"/>
         <Button
-            android:id="@+id/notif_btn_update"
+            android:id="@+id/notif_btn_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/notif_update"/>
+            android:text="@string/notif_cancel"
+            style="?android:attr/buttonBarButtonStyle"/>
         <Button
             android:id="@+id/notif_btn_clear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/notif_clear"/>
+            android:text="@string/notif_clear"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
 
 </LinearLayout>

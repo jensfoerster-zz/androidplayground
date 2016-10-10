@@ -1,4 +1,4 @@
-package de.my.playground;
+package de.my.playground.misc;
 
 import java.util.ArrayList;
 import java.util.List;
