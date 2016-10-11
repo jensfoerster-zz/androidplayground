@@ -9,10 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,12 +46,22 @@ public class NotificationFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Intent sm = new Intent(getContext(), NLService.class);
-        getContext().bindService(sm, notificationListenerConnection, Context.BIND_AUTO_CREATE);
+        //The service needs the notification listener permission which can only be set in the settings.
+        if (Settings.Secure.getString(getActivity().getContentResolver(), "enabled_notification_listeners") == null
+            || !Settings.Secure.getString(getActivity().getContentResolver(), "enabled_notification_listeners").contains(getContext().getApplicationContext().getPackageName())) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                getContext().startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
+            } else {
+                getContext().startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+            }
+        }
+
+        Intent sm = new Intent(getActivity().getApplicationContext(), NLService.class);
+        getActivity().startService(sm);
+        getActivity().bindService(sm, notificationListenerConnection, Context.BIND_ABOVE_CLIENT);
 
         View v = inflater.inflate(R.layout.fragment_notification, container, false);
 
@@ -59,6 +72,8 @@ public class NotificationFragment extends Fragment {
                             new NotificationCompat.Builder(getContext())
                                     .setSmallIcon(R.drawable.ic_beach_access_black_24dp)
                                     .setContentTitle("ARRRRRR")
+                                    .setColor(ContextCompat.getColor(getContext(), R.color.ColorPrimary))
+                                    .setVibrate(new long[]{0, 500, 0, 500, 0})
                                     .setContentText(getMessageText());
                     Intent resultIntent = new Intent(getContext(), MainActivity.class);
                     PendingIntent resultPendingIntent =
@@ -109,7 +124,9 @@ public class NotificationFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        getContext().unbindService(notificationListenerConnection);
+        getActivity().unbindService(notificationListenerConnection);
+        Intent sm = new Intent(getActivity().getApplicationContext(), NLService.class);
+        getActivity().stopService(sm);
         notificationListenerConnection = null;
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(mBroadcastListener);
     }
@@ -130,7 +147,7 @@ public class NotificationFragment extends Fragment {
     BroadcastReceiver mBroadcastListener = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            switch (intent.getAction()){
+            switch (intent.getAction()) {
                 case CustomIntent.NOTIFICATION_POSTED_ACTION:
                     mText.append("Notification posted: " + intent.getStringExtra(CustomIntent.NOTIFICATION_POSTED_EXTRA) + System.getProperty("line.separator"));
                     break;
@@ -141,7 +158,6 @@ public class NotificationFragment extends Fragment {
         }
     };
 
-
     private void initializeView() {
         if (mText == null) return;
 
@@ -151,7 +167,7 @@ public class NotificationFragment extends Fragment {
             mBtn_cancel.setEnabled(false);
             mBtn_clear.setEnabled(false);
         } else {
-            if(mNotificationId == 0){
+            if (mNotificationId == 0) {
                 mBtn_cancel.setEnabled(false);
                 mBtn_clear.setEnabled(false);
             } else {
@@ -182,6 +198,6 @@ public class NotificationFragment extends Fragment {
                 "Where there is a sea there are pirates.",
                 "If ye thinks he be ready to sail a beauty, ye better be willin’ to sink with her.",
                 "Always be yourself, unless you can be a pirate. Then always be a pirate."};
-        return msg[(int)(Math.random()*msg.length)];
+        return msg[(int) (Math.random() * msg.length)];
     }
 }

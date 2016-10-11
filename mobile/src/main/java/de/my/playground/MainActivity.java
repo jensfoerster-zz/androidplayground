@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         initializeToolbarAndDrawer();
 
         if (savedInstanceState == null)
-            nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_map, 0);
+            nvDrawer.getMenu().performIdentifierAction(R.id.nav_frag_sound, 0);
     }
 
     private void initializeToolbarAndDrawer() {

@@ -34,7 +34,13 @@ public class NLService extends NotificationListenerService {
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d(TAG, "onBind");
         return mBinder;
+    }
+
+    @Override
+    public void onListenerConnected() {
+        Log.d(TAG, "onListenerConnected");
     }
 
     @Override
