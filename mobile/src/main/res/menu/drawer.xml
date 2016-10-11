@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_frag_map"
-            android:icon="@android:drawable/ic_dialog_map"
-            android:title="Map" />
+            android:id="@+id/nav_frag_sound"
+            android:icon="@android:drawable/ic_media_play"
+            android:title="Sound" />
         <item
             android:id="@+id/nav_frag_tabs"
             android:icon="@android:drawable/ic_dialog_dialer"
             android:title="Tabs"/>
         <item
+            android:id="@+id/nav_frag_map"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="Map" />
+        <item
             android:id="@+id/nav_frag_bc"
             android:icon="@android:drawable/ic_dialog_email"
             android:title="Broadcast" />
-        <item
-            android:id="@+id/nav_frag_sound"
-            android:icon="@android:drawable/ic_media_play"
-            android:title="Sound" />
         <item
             android:id="@+id/nav_frag_scroll"
             android:icon="@android:drawable/ic_dialog_dialer"

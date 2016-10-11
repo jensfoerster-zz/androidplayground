@@ -117,8 +117,8 @@ public class NotificationFragment extends Fragment {
     ServiceConnection notificationListenerConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            initializeView();
             mNotificationListenerService = ((NLService.ServiceBinder) service).getService();
+            initializeView();
         }
 
         @Override
