@@ -16,7 +16,7 @@ import java.security.UnrecoverableEntryException;
 import java.security.cert.CertificateException;
 
 /**
- * Created by dep01181 on 12/15/2015.
+ * Created by jensfoerster on 12/15/2015.
  */
 public class VerifyTask extends AsyncTask<String, Void, Boolean> {
     private static final String TAG = "KeyStore.SignTask";

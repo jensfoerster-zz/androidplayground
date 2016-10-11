@@ -16,7 +16,7 @@ import de.my.playground.adapter.ExpandableListAdapter;
 import de.my.playground.R;
 
 /**
- * Created by dep01181 on 4/25/2016.
+ * Created by jensfoerster on 4/25/2016.
  */
 public class ExpandableListFragment extends Fragment {
     @Override

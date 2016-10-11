@@ -1,7 +1,7 @@
 package de.my.playground.misc;
 
 /**
- * Created by dep01181 on 10.10.2016.
+ * Created by jensfoerster on 10.10.2016.
  */
 
 public final class CustomIntent {

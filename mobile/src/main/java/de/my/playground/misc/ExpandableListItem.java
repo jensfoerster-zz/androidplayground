@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /**
- * Created by dep01181 on 9/26/2015.
+ * Created by jensfoerster on 9/26/2015.
  */
 public class ExpandableListItem<T> {
 

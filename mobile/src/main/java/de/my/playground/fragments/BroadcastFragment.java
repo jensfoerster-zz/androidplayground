@@ -18,7 +18,7 @@ import android.widget.TextView;
 import de.my.playground.R;
 
 /**
- * Created by dep01181 on 9/30/2015.
+ * Created by jensfoerster on 9/30/2015.
  */
 public class BroadcastFragment extends Fragment {
 

@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 
 /**
- * Created by dep01181 on 7/8/2016.
+ * Created by jensfoerster on 7/8/2016.
  */
 public class FragmentInfo {
     public final String name;

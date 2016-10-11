@@ -14,7 +14,7 @@ import android.widget.Button;
 import de.my.playground.R;
 
 /**
- * Created by dep01181 on 10/12/2015.
+ * Created by jensfoerster on 10/12/2015.
  */
 public class DialogExampleFragment extends Fragment implements DetailsDialogFragment.OnClickListener {
 

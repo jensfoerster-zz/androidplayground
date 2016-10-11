@@ -1,7 +1,7 @@
 package de.my.playground.adapter;
 
 /**
- * Created by dep01181 on 9/21/2015.
+ * Created by jensfoerster on 9/21/2015.
  */
 import android.content.Context;
 import android.support.design.widget.Snackbar;

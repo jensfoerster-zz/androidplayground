@@ -8,7 +8,7 @@ import de.my.playground.R;
 
 
 /**
- * Created by dep01181 on 5/4/2016.
+ * Created by jensfoerster on 5/4/2016.
  */
 public class CardItemViewHolder extends RecyclerView.ViewHolder {
     public TextView mTextView;

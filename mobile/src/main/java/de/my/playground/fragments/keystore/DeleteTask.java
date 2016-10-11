@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
 /**
- * Created by dep01181 on 12/15/2015.
+ * Created by jensfoerster on 12/15/2015.
  */
 public class DeleteTask extends AsyncTask<String, Void, Void> {
     private static final String TAG = "KeyStore.DeleteTask";

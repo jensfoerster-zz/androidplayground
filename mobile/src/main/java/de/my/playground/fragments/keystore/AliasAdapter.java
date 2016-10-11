@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 /**
- * Created by dep01181 on 12/15/2015.
+ * Created by jensfoerster on 12/15/2015.
  */
 public class AliasAdapter extends ArrayAdapter<String> {
     public AliasAdapter(Context context) {

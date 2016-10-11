@@ -13,7 +13,7 @@ import de.my.playground.misc.CustomIntent;
 /**
  * Notification Listener Service - sends broadcasts for every new notification.
  * As an example this Service can be started via onBind or startService.
- * Created by dep01181 on 07.09.2016.
+ * Created by jensfoerster on 07.09.2016.
  */
 public class NLService extends NotificationListenerService {
 
